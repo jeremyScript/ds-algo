@@ -25,3 +25,11 @@ the numbers representing our time ranges.
 */
 
 // Solution
+
+/**
+ * @name mergeMeetingTimes
+ * @param {array} meetings - An array of objects.
+ * @returns {array} An array of merged objects.
+ */
+
+export const mergeMeetingTimes = (meetings) => {};

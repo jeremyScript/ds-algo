@@ -18,7 +18,7 @@ test("meeting times are back to back", () => {
   ).toEqual([{ startTime: 5, endTime: 8 }]);
 });
 
-test("meeting times are are inside another", () => {
+test("meeting times are inside another", () => {
   expect(
     mergeMeetingTimes([
       { startTime: 1, endTime: 8 },
@@ -27,7 +27,7 @@ test("meeting times are are inside another", () => {
   ).toEqual([{ startTime: 1, endTime: 8 }]);
 });
 
-test("meeting times neither overlap nor touch", () => {
+test("meeting times neither overlap nor are back to back", () => {
   expect(
     mergeMeetingTimes([
       { startTime: 1, endTime: 3 },
@@ -39,7 +39,7 @@ test("meeting times neither overlap nor touch", () => {
   ]);
 });
 
-test("meeting times are not sorted", () => {
+test("meeting times are unsorted", () => {
   expect(
     mergeMeetingTimes([
       { startTime: 5, endTime: 8 },

@@ -1,0 +1,23 @@
+{
+  "name": "ds-algo",
+  "version": "1.0.0",
+  "description": "A collection of data structure and algorithm problems and original solutions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeremyScript/ds-algo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeremyScript/ds-algo/issues"
+  },
+  "homepage": "https://github.com/jeremyScript/ds-algo#readme",
+  "devDependencies": {
+    "jest": "^27.0.6"
+  }
+}

@@ -8,10 +8,19 @@ Example:
 */
 
 // Solution
+// O(n) time and O(1) space
 
 /**
  * @name reverseStringInPlace
  * @param {array} arr - An array of characters or numbers.
  */
 
-export const reverseStringInPlace = (arr) => {};
+export const reverseStringInPlace = (arr) => {
+  const pivot = Math.floor(arr.length / 2);
+  // Iterate to the pivot
+  for (let i = 0; i < pivot; i++) {
+    let j = arr.length - 1 - i;
+    // Swap elements with destructuring assignment
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+};

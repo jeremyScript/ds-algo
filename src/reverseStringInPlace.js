@@ -24,3 +24,15 @@ export const reverseStringInPlace = (arr) => {
     [arr[i], arr[j]] = [arr[j], arr[i]];
   }
 };
+
+// Alternative approach
+const reverseStringInPlace2 = (arr) => {
+  let leftIndex = 0;
+  let rightIndex = arr.length - 1;
+
+  while (leftIndex < rightIndex) {
+    [arr[leftIndex], arr[rightIndex]] = [arr[rightIndex], arr[leftIndex]];
+    leftIndex++;
+    rightIndex++;
+  }
+};

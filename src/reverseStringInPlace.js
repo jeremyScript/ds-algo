@@ -33,6 +33,6 @@ const reverseStringInPlace2 = (arr) => {
   while (leftIndex < rightIndex) {
     [arr[leftIndex], arr[rightIndex]] = [arr[rightIndex], arr[leftIndex]];
     leftIndex++;
-    rightIndex++;
+    rightIndex--;
   }
 };

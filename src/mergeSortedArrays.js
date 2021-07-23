@@ -25,19 +25,11 @@ export const mergeSortedArrays = (arr1, arr2) => {
   let i = 0;
   let j = 0;
 
-  // Loop through both arrays and compare elements
-  // The smaller element gets pushed into mergedArr
-  // while updating indices accordingly
   while (i < arr1.length || j < arr2.length) {
     // If one array runs out of elements to merge,
     // continue appending the other array's elements
-    if (arr1[i] <= arr2[j] || arr2[j] === undefined) {
-      mergedArr.push(arr1[i]);
-      i++;
-    } else {
-      mergedArr.push(arr2[j]);
-      j++;
-    }
+    if (arr1[i] <= arr2[j] || arr2[j] === undefined) mergedArr.push(arr1[i++]);
+    else mergedArr.push(arr2[j++]);
   }
 
   return mergedArr;

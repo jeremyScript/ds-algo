@@ -1,4 +1,4 @@
-import { isFirstComeFirstServed } from "../src/checkCafeOrders";
+import { isFirstComeFirstServed } from "../src/cafeOrderChecker";
 
 test("there is no order in one of the categories", () => {
   const takeOutOrders = [];

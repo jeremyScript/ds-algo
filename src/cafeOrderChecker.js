@@ -23,6 +23,7 @@ would be first-come, first-served.
 */
 
 // Solution
+// O(n) time and O(1) space
 
 /**
  * @name isFirstComeFirstServed
@@ -36,4 +37,25 @@ export const isFirstComeFirstServed = (
   takeOutOrders,
   dineInOrders,
   servedOrders
-) => {};
+) => {
+  // Throw an error if the number of orders served
+  // do not match the sum of the orders placed
+  if (servedOrders.length !== takeOutOrders.length + dineInOrders.length)
+    throw new Error(
+      "One or more orders are either missing or served incorrectly"
+    );
+
+  let takeOutOrderIndex = 0;
+  let dineInOrderIndex = 0;
+
+  // For each order, check if it matches the current
+  // element in either takeOutOrders or dineInOrders
+  for (let i = 0; i < servedOrders.length; i++) {
+    if (servedOrders[i] === takeOutOrders[takeOutOrderIndex])
+      takeOutOrderIndex++;
+    else if (servedOrders[i] === dineInOrders[dineInOrderIndex])
+      dineInOrderIndex++;
+    else return false;
+  }
+  return true;
+};

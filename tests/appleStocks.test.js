@@ -18,5 +18,5 @@ test("price fluctuates", () => {
 
 test("price stays constant", () => {
   const stockPrices = [10, 10, 10, 10, 10];
-  expect(getMaxProfit(stockPrices)).toEqual([10, 10, 10]);
+  expect(getMaxProfit(stockPrices)).toEqual([0, 10, 10]);
 });

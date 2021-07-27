@@ -23,8 +23,7 @@ For example:
  */
 
 export const getMaxProfit = (stockPrices) => {
-  let bestBuyPrice;
-  let bestSellPrice;
+  let bestBuyPrice, bestSellPrice;
   // Temporarily assign extreme values
   let maxProfit = -Infinity;
   let lowestPrice = Infinity;
@@ -32,8 +31,7 @@ export const getMaxProfit = (stockPrices) => {
   // Compare and update values at each iteration to get maxProfit
   for (let currPrice of stockPrices) {
     let currProfit = currPrice - lowestPrice;
-    if (currProfit > maxProfit) {
-      maxProfit = currProfit;
+    if (maxProfit != (maxProfit = Math.max(currProfit, maxProfit))) {
       // Prices that produce the maximum profit
       bestBuyPrice = lowestPrice;
       bestSellPrice = currPrice;

@@ -21,4 +21,22 @@ For example:
  * @returns {number} A number representing the maximum profit.
  */
 
-export const getMaxProfit = (stockPrices) => {};
+export const getMaxProfit = (stockPrices) => {
+  let bestBuyPrice = stockPrices[0];
+  let bestSellPrice = stockPrices[1];
+  let maxProfit = bestSellPrice - bestBuyPrice;
+
+  let lowestBuyPrice = stockPrices[0];
+
+  for (let i = 1; i < stockPrices.length; i++) {
+    let currProfit = stockPrices[i] - lowestBuyPrice;
+    if (currProfit > maxProfit) {
+      maxProfit = currProfit;
+      bestBuyPrice = lowestBuyPrice;
+      bestSellPrice = stockPrices[i];
+    }
+    lowestBuyPrice = Math.min(lowestBuyPrice, stockPrices[i]);
+  }
+
+  return [maxProfit, bestBuyPrice, bestSellPrice];
+};

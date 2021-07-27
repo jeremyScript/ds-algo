@@ -14,6 +14,7 @@ For example:
 */
 
 // Solution
+// O(n) time and O(1) space
 
 /**
  * @name getMaxProfit
@@ -22,20 +23,22 @@ For example:
  */
 
 export const getMaxProfit = (stockPrices) => {
-  let bestBuyPrice = stockPrices[0];
-  let bestSellPrice = stockPrices[1];
-  let maxProfit = bestSellPrice - bestBuyPrice;
+  let bestBuyPrice;
+  let bestSellPrice;
+  // Temporarily assign extreme values
+  let maxProfit = -Infinity;
+  let lowestPrice = Infinity;
 
-  let lowestBuyPrice = stockPrices[0];
-
-  for (let i = 1; i < stockPrices.length; i++) {
-    let currProfit = stockPrices[i] - lowestBuyPrice;
+  // Compare and update values at each iteration to get maxProfit
+  for (let currPrice of stockPrices) {
+    let currProfit = currPrice - lowestPrice;
     if (currProfit > maxProfit) {
       maxProfit = currProfit;
-      bestBuyPrice = lowestBuyPrice;
-      bestSellPrice = stockPrices[i];
+      // Prices that produce the maximum profit
+      bestBuyPrice = lowestPrice;
+      bestSellPrice = currPrice;
     }
-    lowestBuyPrice = Math.min(lowestBuyPrice, stockPrices[i]);
+    lowestPrice = Math.min(lowestPrice, currPrice);
   }
 
   return [maxProfit, bestBuyPrice, bestSellPrice];

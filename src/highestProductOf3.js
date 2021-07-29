@@ -6,6 +6,7 @@ The input will always have at least three integers.
 */
 
 // Solution
+// O(n) time and O(1) space
 
 /**
  * @name getHighestProductOf3
@@ -14,15 +15,18 @@ The input will always have at least three integers.
  */
 
 export const getHighestProductOf3 = (ints) => {
-  if (ints.length < 3)
+  if (ints.length < 3) {
     throw new Error("The input array must contain at least 3 integers");
-
+  }
+  // Declare variables to be kept track of
   let highestInt = Math.max(ints[0], ints[1]);
   let lowestInt = Math.min(ints[0], ints[1]);
   let highestProductOf2 = ints[0] * ints[1];
   let lowestProductOf2 = ints[0] * ints[1];
   let highestProductOf3 = -Infinity;
 
+  // Compare and update the variables against each element and their products
+  // in order to get to the highest possible product value
   for (let i = 2; i < ints.length; i++) {
     let currInt = ints[i];
 

@@ -18,4 +18,18 @@ When building your function:
  * @returns {boolean} A boolean indicating whether two such films exist.
  */
 
-export const canTwoMoviesFillFlight = (movieLengths, flightLength) => {};
+export const canTwoMoviesFillFlight = (movieLengths, flightLength) => {
+  if (movieLengths.length < 2)
+    throw new Error("There are fewer than two movies available");
+
+  const movieSet = new Set();
+
+  for (let movieLength of movieLengths) {
+    const complementaryPair = flightLength - movieLength;
+    if (movieSet.has(complementaryPair)) return true;
+
+    movieSet.add(movieLength);
+  }
+
+  return false;
+};

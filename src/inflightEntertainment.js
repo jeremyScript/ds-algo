@@ -10,6 +10,7 @@ When building your function:
 */
 
 // Solution
+// O(n) time and O(n) space
 
 /**
  * @name canTwoMoviesFillFlight
@@ -19,10 +20,11 @@ When building your function:
  */
 
 export const canTwoMoviesFillFlight = (movieLengths, flightLength) => {
+  // Edge case
   if (movieLengths.length < 2)
     throw new Error("There are fewer than two movies available");
 
-  const movieSet = new Set();
+  const movieSet = new Set(); // To store movie times
 
   for (let movieLength of movieLengths) {
     const complementaryPair = flightLength - movieLength;

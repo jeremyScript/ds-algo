@@ -13,6 +13,7 @@ Examples:
 */
 
 // Solution
+// O(n) time and O(n) space
 
 /**
  * @name hasPalindromePermutation
@@ -20,13 +21,16 @@ Examples:
  * @returns {boolean} A boolean indicating whether there's a palindrome.
  */
 
-// A string has a permutation that's a palindrome if it has no more than one unique letter
-// that occurs an odd number of times
+// A string has a permutation that's a palindrome if it has no more than one
+// unique letter that occurs an odd number of times
 export const hasPalindromePermutation = (str) => {
-  const temp = new Set();
+  // To accout for unpaired unique letters
+  const unpairedCharSet = new Set();
   for (let char of str) {
-    if (temp.has(char)) temp.delete(char);
-    else temp.add(char);
+    // Any letter that appears even number of times will be deleted from the set
+    // leaving only the letters that appear odd number of times
+    if (unpairedCharSet.has(char)) unpairedCharSet.delete(char);
+    else unpairedCharSet.add(char);
   }
-  return temp.size <= 1;
+  return unpairedCharSet.size <= 1;
 };

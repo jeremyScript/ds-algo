@@ -22,4 +22,11 @@ Examples:
 
 // A string has a permutation that's a palindrome if it has no more than one unique letter
 // that occurs an odd number of times
-export const hasPalindromePermutation = (str) => {};
+export const hasPalindromePermutation = (str) => {
+  const temp = new Set();
+  for (let char of str) {
+    if (temp.has(char)) temp.delete(char);
+    else temp.add(char);
+  }
+  return temp.size <= 1;
+};

@@ -23,4 +23,24 @@ Do not use division in the solution.
  * @returns {array} An array consisting of products of integers.
  */
 
-export const getProductsOfAllOtherNumbers = (numbers) => {};
+export const getProductsOfAllOtherNumbers = (numbers) => {
+  const len = numbers.length;
+  if (len < 2) throw new Error("At least two integers are required");
+
+  const result = [];
+  let product;
+
+  for (let i = 0; i < numbers.length; i++) {
+    let j = i + 1;
+    product = 1;
+
+    while (j % numbers.length !== i) {
+      product *= numbers[j % numbers.length];
+      j++;
+    }
+
+    result.push(product);
+  }
+
+  return result;
+};

@@ -15,7 +15,8 @@ For example:
 Do not use division in the solution.
 */
 
-// Solution
+// Final Solution
+// O(n) time and O(n) space
 
 /**
  * @name getProductsOfAllOtherNumbers
@@ -24,23 +25,48 @@ Do not use division in the solution.
  */
 
 export const getProductsOfAllOtherNumbers = (numbers) => {
-  const len = numbers.length;
-  if (len < 2) throw new Error("At least two integers are required");
+  if (numbers.length < 2) throw new Error("At least two integers required");
 
-  const result = [];
-  let product;
+  const productsOfAllOtherNumbers = [];
+  productsOfAllOtherNumbers[0] = 1;
 
-  for (let i = 0; i < numbers.length; i++) {
-    let j = i + 1;
-    product = 1;
-
-    while (j % numbers.length !== i) {
-      product *= numbers[j % numbers.length];
-      j++;
-    }
-
-    result.push(product);
+  for (let i = 1; i < numbers.length; i++) {
+    let intergerBeforeIndex = numbers[i - 1];
+    productsOfAllOtherNumbers[i] =
+      productsOfAllOtherNumbers[i - 1] * intergerBeforeIndex;
   }
 
-  return result;
+  let temp = 1;
+
+  for (let i = numbers.length - 1; i >= 0; i--) {
+    productsOfAllOtherNumbers[i] *= temp;
+    temp *= numbers[i];
+  }
+
+  return productsOfAllOtherNumbers;
 };
+
+// Preliminary solution
+// O(n^2) time and O(n) space
+
+// const getProductsOfAllOtherNumbers = (numbers) => {
+//   const len = numbers.length;
+//   if (len < 2) throw new Error("At least two integers are required");
+
+//   const result = [];
+//   let product;
+
+//   for (let i = 0; i < numbers.length; i++) {
+//     let j = i + 1;
+//     product = 1;
+
+//     while (j % numbers.length !== i) {
+//       product *= numbers[j % numbers.length];
+//       j++;
+//     }
+
+//     result.push(product);
+//   }
+
+//   return result;
+// };

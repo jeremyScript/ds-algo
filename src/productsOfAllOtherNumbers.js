@@ -28,19 +28,18 @@ export const getProductsOfAllOtherNumbers = (numbers) => {
   if (numbers.length < 2) throw new Error("At least two integers required");
 
   const productsOfAllOtherNumbers = [];
-  productsOfAllOtherNumbers[0] = 1;
 
-  for (let i = 1; i < numbers.length; i++) {
-    let intergerBeforeIndex = numbers[i - 1];
-    productsOfAllOtherNumbers[i] =
-      productsOfAllOtherNumbers[i - 1] * intergerBeforeIndex;
+  let productOfNumbersBeforeIndex = 1;
+  let productOfNumbersAfterIndex = 1;
+
+  for (let i = 0; i < numbers.length; i++) {
+    productsOfAllOtherNumbers[i] = productOfNumbersBeforeIndex;
+    productOfNumbersBeforeIndex *= numbers[i];
   }
 
-  let temp = 1;
-
   for (let i = numbers.length - 1; i >= 0; i--) {
-    productsOfAllOtherNumbers[i] *= temp;
-    temp *= numbers[i];
+    productsOfAllOtherNumbers[i] *= productOfNumbersAfterIndex;
+    productOfNumbersAfterIndex *= numbers[i];
   }
 
   return productsOfAllOtherNumbers;

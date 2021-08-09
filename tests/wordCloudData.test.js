@@ -16,7 +16,7 @@ test("given a simple-structured string, it builds a map correctly", () => {
   expect(actual).toEqual(expected);
 });
 
-test("Capitalized words are kept as such only if they're consistent", () => {
+test("capitalized words are kept as such only if they're consistent", () => {
   const str =
     "All I know is that when I needed McDonald's, McDonald's was there for me all the time.";
   const actual = buildWordCloudData(str);

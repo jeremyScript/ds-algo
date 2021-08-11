@@ -8,10 +8,25 @@ integer that is >= floor and <= ceiling.
 */
 
 // Solution
+// O(n) time and O(1) space
 
 /**
  * @name shuffleArrayInPlace
- * @param {array} array - An array to be shuffled.
+ * @param {array} arr - An array to be shuffled.
  */
 
-export const shuffleArrayInPlace = (array) => {};
+export const shuffleArrayInPlace = (arr) => {
+  if (arr.length <= 1) return;
+
+  for (let i = 0; i < arr.length; i++) {
+    const randomIndex = getRandomIndex(i, arr.length - 1);
+    // Swap the current element with another at randomIndex
+    if (i !== randomIndex)
+      [arr[i], arr[randomIndex]] = [arr[randomIndex], arr[i]];
+  }
+};
+
+// Helper function that returns a random index
+function getRandomIndex(floor, ceiling) {
+  return Math.floor(Math.random() * (ceiling - floor + 1)) + floor;
+}

@@ -23,4 +23,10 @@ Optimize for space.
  * @returns {number} A number that is repeated.
  */
 
-export const findADuplicate = (numbers) => {};
+export const findADuplicate = (numbers) => {
+  const setOfNums = new Set();
+  for (let num of numbers) {
+    if (setOfNums.has(num)) return num;
+    setOfNums.add(num);
+  }
+};

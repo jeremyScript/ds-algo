@@ -23,6 +23,7 @@ For example:
 */
 
 // Solution
+// O(n) time and O(1) space
 
 /**
  * @name findRotationPoint
@@ -35,8 +36,10 @@ export const findRotationPoint = (words) => {
 
   for (let i = 1; i < words.length; i++) {
     let currWord = words[i];
+    // Check the order between the previous and current words
     if (prevWord > currWord) return i;
   }
-
+  // If not found elsewhere, the rotation
+  // point is at the beginning of the array
   return 0;
 };

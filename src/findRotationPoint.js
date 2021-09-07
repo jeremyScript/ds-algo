@@ -23,7 +23,7 @@ For example:
 */
 
 // Solution
-// O(n) time and O(1) space
+// O(log n) time and O(1) space
 
 /**
  * @name findRotationPoint
@@ -32,6 +32,32 @@ For example:
  */
 
 export const findRotationPoint = (words) => {
+  if (words.length === 1) return words[0];
+
+  let startIndex = 0;
+  let endIndex = words.length - 1;
+  let midIndex = Math.floor((endIndex - startIndex) / 2);
+
+  if (words[startIndex] < words[endIndex]) return 0;
+
+  while (startIndex < endIndex) {
+    if (words[midIndex] < words[midIndex - 1]) return midIndex;
+    if (words[midIndex] > words[midIndex + 1]) return midIndex + 1;
+
+    if (words[midIndex] > words[startIndex]) {
+      startIndex = midIndex;
+      midIndex = Math.floor((endIndex - startIndex) / 2) + midIndex;
+    } else {
+      endIndex = midIndex;
+      midIndex = Math.floor((endIndex - startIndex) / 2) + startIndex;
+    }
+  }
+};
+
+// Alternative Solution
+// O(n) time and O(1) space
+
+export const findRotationPoint2 = (words) => {
   let prevWord = words[0];
 
   for (let i = 1; i < words.length; i++) {

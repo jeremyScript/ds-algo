@@ -20,7 +20,7 @@ Optimize for space.
 /**
  * @name findADuplicate
  * @param {array} numbers - An array of numbers.
- * @returns {number or null} A number that is repeated. If none, null.
+ * @returns {number} A number that is repeated.
  */
 
 export const findADuplicate = (numbers) => {};

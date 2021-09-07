@@ -9,8 +9,3 @@ test("there are duplicates of multiple numbers", () => {
   const numbers = [6, 3, 1, 5, 3, 4, 6];
   expect([6, 3]).toContain(findADuplicate(numbers));
 });
-
-test("there is no duplicate of any number", () => {
-  const numbers = [-3, 3, 1, 5, -5, 4, 6];
-  expect(findADuplicate(numbers)).toBe(null);
-});

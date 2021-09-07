@@ -10,6 +10,7 @@ mergeSort(arr);
 */
 
 // Solution
+// O(nlog n) time and O(n) space
 
 /**
  * @name mergeSort
@@ -25,6 +26,7 @@ export const mergeSort = (arr) => {
   const arrA = arr.slice(0, halfLen);
   const arrB = arr.slice(halfLen, len);
 
+  // Split the sub-arrays recursively
   const arr1 = mergeSort(arrA);
   const arr2 = mergeSort(arrB);
 
@@ -32,6 +34,7 @@ export const mergeSort = (arr) => {
   let i = 0;
   let j = 0;
 
+  // Sort and merge
   while (arr1[i] !== undefined || arr2[j] !== undefined) {
     if (arr1[i] < arr2[j] || arr2[j] === undefined) merged.push(arr1[i++]);
     else merged.push(arr2[j++]);

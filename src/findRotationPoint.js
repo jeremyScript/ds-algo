@@ -34,23 +34,22 @@ For example:
 export const findRotationPoint = (words) => {
   if (words.length === 1) return words[0];
 
-  let startIndex = 0;
-  let endIndex = words.length - 1;
-  let midIndex = Math.floor((endIndex - startIndex) / 2);
+  let lowerIndex = 0;
+  let upperIndex = words.length - 1;
 
-  if (words[startIndex] < words[endIndex]) return 0;
+  // If the list is not rotated, return 0
+  if (words[lowerIndex] < words[upperIndex]) return 0;
 
-  while (startIndex < endIndex) {
-    if (words[midIndex] < words[midIndex - 1]) return midIndex;
-    if (words[midIndex] > words[midIndex + 1]) return midIndex + 1;
+  while (lowerIndex < upperIndex) {
+    let middleIndex = Math.floor((upperIndex - lowerIndex) / 2) + lowerIndex;
 
-    if (words[midIndex] > words[startIndex]) {
-      startIndex = midIndex;
-      midIndex = Math.floor((endIndex - startIndex) / 2) + midIndex;
-    } else {
-      endIndex = midIndex;
-      midIndex = Math.floor((endIndex - startIndex) / 2) + startIndex;
-    }
+    if (words[middleIndex] < words[middleIndex - 1]) return middleIndex;
+    if (words[middleIndex] > words[middleIndex + 1]) return middleIndex + 1;
+
+    // Go right
+    if (words[middleIndex] > words[lowerIndex]) lowerIndex = middleIndex;
+    // Go left
+    else upperIndex = middleIndex;
   }
 };
 

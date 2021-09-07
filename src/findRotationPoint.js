@@ -1,6 +1,9 @@
 /*
-Given an array of words that are alphabetically ordered except the start of the
-list of words is not at the very top or at index 0.
+Given a list of words is stored in an array in an alphabetical order (except the
+start of the list is not at index 0, write a function for finding the index of
+the "rotation point", which is where the list starts.
+
+Assume the list is huge so we want efficiency here.
 
 For example:
 
@@ -17,9 +20,6 @@ For example:
   'karpatka',
   'othellolagkage',
 ];
-
-Write a function for finding the index of the "rotation point", which is where
-the start of the list is. Assume the list is huge so we want efficiency here.
 */
 
 // Solution

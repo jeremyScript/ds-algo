@@ -17,4 +17,25 @@ mergeSort(arr);
  * @returns {array} A sorted array.
  */
 
-export const mergeSort = (arr) => {};
+export const mergeSort = (arr) => {
+  const len = arr.length;
+  if (len < 2) return arr;
+
+  const halfLen = Math.floor(len / 2);
+  const arrA = arr.slice(0, halfLen);
+  const arrB = arr.slice(halfLen, len);
+
+  const arr1 = mergeSort(arrA);
+  const arr2 = mergeSort(arrB);
+
+  const merged = [];
+  let i = 0;
+  let j = 0;
+
+  while (arr1[i] !== undefined || arr2[j] !== undefined) {
+    if (arr1[i] < arr2[j] || arr2[j] === undefined) merged.push(arr1[i++]);
+    else merged.push(arr2[j++]);
+  }
+
+  return merged;
+};

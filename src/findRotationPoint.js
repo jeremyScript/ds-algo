@@ -30,4 +30,13 @@ For example:
  * @reutrns {number} The index at which the list of words rotates.
  */
 
-export const findRotationPoint = (words) => {};
+export const findRotationPoint = (words) => {
+  let prevWord = words[0];
+
+  for (let i = 1; i < words.length; i++) {
+    let currWord = words[i];
+    if (prevWord > currWord) return i;
+  }
+
+  return 0;
+};

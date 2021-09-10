@@ -19,4 +19,24 @@ Do this in less than O(nlog n) time.
 
 // Solution
 
-export const sortScores = (unsortedScores, HIGHEST_POSSIBLE_SCORE) => {};
+export const sortScores = (unsortedScores, HIGHEST_POSSIBLE_SCORE) => {
+  const tempArr = [];
+  for (let i = 0; i < unsortedScores.length; i++) {
+    const score = unsortedScores[i];
+    if (score > HIGHEST_POSSIBLE_SCORE)
+      throw new Error("Score outside the range");
+    tempArr[score] = tempArr[score] === undefined ? 1 : tempArr[score] + 1;
+  }
+
+  const sortedArr = [];
+
+  for (let i = 0; i < tempArr.length; i++) {
+    let count = tempArr[i] || 0;
+    while (count > 0) {
+      sortedArr.push(i);
+      count--;
+    }
+  }
+
+  return sortedArr;
+};

@@ -37,6 +37,8 @@ Your stacks will contain only integers.
 */
 
 // Solution
+// O(1) time for push, pop, and getMax.
+// O(n) space
 
 export class MaxStack {
   constructor() {
@@ -44,6 +46,8 @@ export class MaxStack {
     this.highestNumsStack = new Stack();
   }
 
+  // Check to see if num is greater than or equal to highestNum,
+  // If it is, push it onto highestNumsStack.
   push(num) {
     const lastIndex = this.highestNumsStack.items.length - 1;
     const highestNum = this.highestNumsStack.items[lastIndex] || num;
@@ -51,6 +55,8 @@ export class MaxStack {
     this.stack.push(num);
   }
 
+  // If the popped number is equal to highestNum,
+  // also pop from highestNumsStack.
   pop() {
     const lastIndex = this.highestNumsStack.items.length - 1;
     const highestNum = this.highestNumsStack.items[lastIndex];
@@ -59,8 +65,8 @@ export class MaxStack {
     return poppedNum === undefined ? null : poppedNum;
   }
 
+  // The last number is the highest number in the stack.
   getMax() {
-    const lastIndex = this.highestNumsStack.items.length - 1;
-    return this.highestNumsStack.items[lastIndex];
+    return this.highestNumsStack.peek();
   }
 }

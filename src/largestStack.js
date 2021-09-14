@@ -1,7 +1,5 @@
-/*
 class Stack {
   constructor() {
-
     // Initialize an empty stack
     this.items = [];
   }
@@ -13,7 +11,6 @@ class Stack {
 
   // Remove and return the last item
   pop() {
-
     // If the stack is empty, return null
     // (It would also be reasonable to throw an exception)
     if (!this.items.length) {
@@ -31,6 +28,7 @@ class Stack {
   }
 }
 
+/*
 Given this Stack class above, use it to implement a new class MaxStack with a
 method getMax() that returns the largest element in the stack. getMax() should
 not remove the item.

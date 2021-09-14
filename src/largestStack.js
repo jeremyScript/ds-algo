@@ -38,4 +38,29 @@ Your stacks will contain only integers.
 
 // Solution
 
-export class MaxStack extends Stack {}
+export class MaxStack {
+  constructor() {
+    this.stack = new Stack();
+    this.highestNumsStack = new Stack();
+  }
+
+  push(num) {
+    const lastIndex = this.highestNumsStack.items.length - 1;
+    const highestNum = this.highestNumsStack.items[lastIndex] || num;
+    if (num >= highestNum) this.highestNumsStack.push(num);
+    this.stack.push(num);
+  }
+
+  pop() {
+    const lastIndex = this.highestNumsStack.items.length - 1;
+    const highestNum = this.highestNumsStack.items[lastIndex];
+    const poppedNum = this.stack.pop();
+    if (poppedNum === highestNum) this.highestNumsStack.pop();
+    return poppedNum === undefined ? null : poppedNum;
+  }
+
+  getMax() {
+    const lastIndex = this.highestNumsStack.items.length - 1;
+    return this.highestNumsStack.items[lastIndex];
+  }
+}

@@ -23,6 +23,9 @@ test("a stack of integers in ascending order", () => {
   maxStack.push(1);
   maxStack.push(2);
   maxStack.push(3);
+  maxStack.pop();
+  maxStack.pop();
+  maxStack.pop();
   expect(maxStack.getMax()).toEqual(3);
 });
 
@@ -35,5 +38,25 @@ test("a stack of integers in descending order", () => {
   maxStack.push(-1);
   maxStack.push(-2);
   maxStack.push(-3);
+  maxStack.pop();
+  maxStack.pop();
+  maxStack.pop();
+  maxStack.pop();
+  expect(maxStack.getMax()).toEqual(3);
+});
+
+test("a stack of integers with mixed operations", () => {
+  const maxStack = new MaxStack();
+  maxStack.push(-1);
+  maxStack.push(1);
+  maxStack.push(2);
+  maxStack.pop();
+  maxStack.push(-3);
+  maxStack.pop();
+  maxStack.push(3);
+  maxStack.pop();
+  maxStack.push(0);
+  maxStack.push(-2);
+  maxStack.pop();
   expect(maxStack.getMax()).toEqual(3);
 });

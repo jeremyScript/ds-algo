@@ -26,7 +26,7 @@ test("a stack of integers in ascending order", () => {
   maxStack.pop();
   maxStack.pop();
   maxStack.pop();
-  expect(maxStack.getMax()).toEqual(3);
+  expect(maxStack.getMax()).toEqual(0);
 });
 
 test("a stack of integers in descending order", () => {
@@ -54,9 +54,10 @@ test("a stack of integers with mixed operations", () => {
   maxStack.push(-3);
   maxStack.pop();
   maxStack.push(3);
-  maxStack.pop();
   maxStack.push(0);
   maxStack.push(-2);
   maxStack.pop();
-  expect(maxStack.getMax()).toEqual(3);
+  maxStack.pop();
+  maxStack.pop();
+  expect(maxStack.getMax()).toEqual(1);
 });

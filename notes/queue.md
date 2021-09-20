@@ -13,7 +13,7 @@ A queue stores items in a first-in, first-out (FIFO) order, sort of like at a gr
 
 A queue's strength lies in its fast operations. ALL queue operations take O(1) time.
 
-##Uses
+## Uses
 
 - Breadth-first search uses a queue to keep track of the nodes to visit next.
 - Printers use queues to manage jobs - jobs get printed in the order they're submitted.

@@ -54,7 +54,7 @@ End of the array, did we swap anything? No. List is sorted.
 
 ### Caveat
 
-- On the first runthrough, you will find the biggest (or smallest) number moved to the last - in its final correct spot. This means that on the second and subsequent runthroughs, you do not have to check whether those biggest (or smallest) numbers are out of order since they already are. This saves one fewer check each iteration. This is an example of optimization.
+On the first runthrough, you will find the biggest (or smallest) number moved to the last - in its final correct spot. This means that on the second and subsequent runthroughs, you do not have to check whether those biggest (or smallest) numbers are out of order since they already are. This saves one fewer check each iteration. This is an example of optimization.
 
 ### The Code
 

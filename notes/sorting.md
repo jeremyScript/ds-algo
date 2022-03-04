@@ -90,6 +90,23 @@ What about the spatial complexity? In our case, we're operating on the array its
 
 Is this sorting algorithm *stable*? To be considered a stable sort, the sort must guarantee that if two things are equal that that they stay in that same order. For example, if we have an array of users that looks like this: `[{state: "CO", name: "Sarah Drasner"}, {state: "CA", name: "Shirley Wu"}, {state: "CA", name: "Scott Moss"}]` and we're sorting by state, we'd have to guarantee that Shirley comes before Scott for the sort to be considered stable. Sometimes this is important to you, sometimes you don't care. So is bubble sort stable? Yes, it'll guarantee that equivalent items come back in the order they were in.
 
+## Insertion Sort
+
+### Overview
+
+Occasionally used in certain contexts.
+
+### The Algorithm
+
+- Start by assuming that the first element of the list is already sorted.
+- Iterate through the list starting with the second element of the list.
+- With each iteration, compare the current element with the the element before it and determine whether it should be swapped or left alone. If it's left alone, go to the next iteration. If not, compare the current element to another element before it (from its swapped position from the previous operation). Continue this until it reaches the end or an element that is smaller (or bigger) than the current element.
+- Continue this process through the end of the iteration.
+
+### Caveat
+### The Code
+### Big O
+
 ## Topic
 ### Overview
 ### The Algorithm

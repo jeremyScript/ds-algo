@@ -105,7 +105,46 @@ Occasionally used in certain contexts.
 
 ### Caveat
 ### The Code
+
+```
+// 1st version
+function insertionSort(arr: number[]) {
+  for (let i = 1; i < arr.length; i++) {
+    let j = i;
+    while (j > 0) {
+      if (arr[j] < arr[j - 1]) {
+        [arr[j], arr[j - 1]] = [arr[j - 1], arr[j]];
+        j -= 1;
+      } else {
+        break;
+      }
+    }
+  }
+  return arr;
+}
+
+// Refactored version
+function insertionSort(arr: number[]) {
+  for (let i = 1; i < arr.length; i++) {
+    for (let j = i; j > 0 && arr[j] < arr[j - 1]; j--) {
+        [arr[j], arr[j - 1]] = [arr[j - 1], arr[j]];
+    }
+  }
+  return arr;
+}
+```
+
 ### Big O
+
+What's the worst case scenario for this sort? A reverse sorted list. You'd have to make every comparison possible since the numbers would be moving from the end of the list to the beginning of the list every single iteration and have to move an item every single iteration. This would be O(n²)
+
+What's the best case scenario? An already-sorted list. In this case, it would only make ask the question "is x the larger than y? Yes." It would never do any extra comparisons and it would never need to make any swaps. This would be O(n). This is when you would consider using insertion sort over something like quick sort or merge sort: if the arrays you're going to be sorting are likely to be sorted already or very close to it (a few swaps is cheap.) This will make it faster than quick sort and merge sort.
+
+What's the average case of a randomly shuffled array? It'll still make a lot of comparisons and swaps, and those just grow exponentially as the array grows, so it'll still be O(n²). Not great for average-case use, only for nearly-sorted situations.
+
+What about spatial complexity? O(1). We don't create any additional items for this sort.
+
+The sort is destructive since we work on the array itself and the sort can be stable as long as you program it so that they stay in order during the insertions.
 
 ## Topic
 ### Overview

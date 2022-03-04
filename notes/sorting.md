@@ -60,7 +60,7 @@ On the first runthrough, you will find the biggest (or smallest) number moved to
 
 ```
 function bubbleSort(nums) {
-  let hasSwapped = false;
+  let hasSwapped;
   let iterationsLeft = arr.length;
   
   do {

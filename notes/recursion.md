@@ -96,11 +96,22 @@ function nestedAddition(arr) {
   for (let i = 0; i < arr.length; i++) {
     if (typeof arr[i] === 'number' {
       sum += arr[i];
-    } else {
+    } else if (Array.isArray(arr[i]) {
       sum += nestedAddition(arr[i]);
     }
   }
   
   return sum;
+}
+```
+
+What is the time and space complexities of this solution???
+
+### N Factorials Example
+
+```
+function getNFactorial(n) {
+  if (n < 2) return 1;
+  return n * getFactorial(n - 1);
 }
 ```

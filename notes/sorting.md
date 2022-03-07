@@ -234,7 +234,7 @@ Return sorted list [1, 2, 3, 4, 5, 6, 7]
 
 ### Caveat
 
-You can do this by writing two separate functions: one that breaks down the array into smaller arrays (via recursion) and the other one that takes two sorted arrays and returns one sorted array.
+You can do this by writing two separate functions: one that breaks down the array into smaller arrays (via recursion) and the other one that takes two sorted arrays and returns one sorted array. The reason you want to separate it into two smaller functions is 1) it's easier to unit test (e.g., `merge` separate from `mergeSort`) and 2) each function should really just do one thing.
 
 ### The Code
 

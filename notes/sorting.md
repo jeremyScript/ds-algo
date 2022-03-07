@@ -150,7 +150,7 @@ The sort is destructive since we work on the array itself and the sort can be st
 
 ### Overview
 
-One of the most efficient sorting algorithm.
+One of the most efficient sorting algorithms.
 
 ### The Algorithm
 
@@ -271,7 +271,15 @@ function mergeSort(arr) {
 
 ### Big O
 
+Every case is the worst case scenario. And the best. And the average. No matter what, the array always gets broken down into lists of 1 and then built back up. 
 
+Let's about the Big O then. Every item in the array will be looked at least once. So that means that we're going to be at least O(n). Then we need to compare those items to other items in the array. But how many times? Does it diminish as the list gets longer or not? It turns out it does diminish.
+
+Notice that the 1 in our example never gets compared to the 7 in the array. How? Well, when the array breaks down into smaller pieces, the 7 gets put in a group with 4. The 1 does get compared at one point to the 4 and gets sorted before the 4. We, by virtue of knowing that everything after 4 in that list larger than 4, don't need to compare 1 to each of those numbers. We get to take a short cut. So, as our array grows larger and larger, we get to take more and more shortcuts. This the hallmark of a log n sort of behavior: the larger the list gets, we get diminishing amounts of more things to do.
+
+So let's combine our two terms together. This sort's computational complexity is O(n log n). And that's the best average/worst case for a general purpose sort that we're going to get. This will definitely be significantly faster than the O(n²) we've been seeing so far on larger lists.
+
+What about spatial complexity? Notice we're creating and throwing away a lot of array. This isn't free, and on a large list can be a problem. Merge sort is among the worst because we'll create an array for every item in the array (plus a few more which would just be a coefficent so Big O wouldn't care) so the spatial complexity is O(n).
 
 ## Topic
 ### Overview

@@ -23,7 +23,7 @@ Since recursive functions will break down into further recursive calls, all of t
 
 So what if we call `fibonacci(30)`? The answer is 832040. You guessed it, we add 1 to itelf, 832040 times.
 
-Not very efficient here, but very elegant code. Here you'd need to trade off having readable code versus a relatively poor performance profile. If your use case says you'll only need to call no more than with n = 10, yeah, this is probably okay. If you need to call it with n = 200, you need to rewrite it to something different.
+Not very efficient here, but very elegant code. Here you'd need to trade off having readable code versus a relatively poor performance profile. If your use case says you'll only need to call no more than with n = 10, yeah, this is probably okay. If you need to call it with n = 200, you need to rewrite it to something different. ***Memoization*** would come in useful in this case.
 
 An iterative solution:
 
@@ -36,6 +36,29 @@ function fibonacci(n) {
   
   return sequence[n - 1];
 }
+```
+
+Memoized:
+
+```
+function memoize(fn) {
+  const cache = {};
+  
+  function outputFn(n) {
+    if (cache[n]) {
+      return cache[n];
+    } else {
+      return cache[n] = fn(n);
+    }
+  }
+  
+  return outputFn;
+}
+
+const memoizedFib = memoize(getFib);
+
+console.log(memoizedFib(40);
+console.log(memoizedFib(40);
 ```
 
 ## Nested Addition Example

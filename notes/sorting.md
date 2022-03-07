@@ -156,12 +156,121 @@ One of the most efficient sorting algorithm.
 
 Break a given array into two smaller arrays. Break those arrays again into yet smaller arrays. Repeat until you have arrays with a single element. By definition, an array of one element is already sorted. Now, merge each pair of the arrays back together, sorting as we go. We'll take those two smaller sroted arrays and combine them back into one larger sorted array. And then, repeat with the bigger arrays until we've merged them all back into one sorted array.
 
+```
+mergeSort([1, 5, 7, 4, 2, 3, 6]) -- depth 0
+
+mergeSort([1, 5, 7, 4]) // mergeSort([2, 3, 6]) -- depth 1
+
+mergeSort([1, 5]) // mergeSort([7, 4]) -- depth 2
+
+mergeSort([1]) // mergeSort([5]) -- depth 3
+[1] is of length one. Base case. Return sorted list [1] -- depth 3
+
+mergeSort([5]) -- depth 3
+[5] is of length one. Base case. Return sorted list [5] -- depth 3
+
+merge([1], [5]) -- depth 3
+Is 1 or 5 smaller? 1. Add to end. [1]
+Left array is empty, concat right array. [1, 5]
+Return sorted array [1, 5].
+
+mergeSort([7, 4]) -- depth 2
+
+mergeSort([7]) // mergeSort([4]) -- depth 3
+[7] is of length one. Base case. Return sorted list [7] -- depth 3
+
+mergeSort([4]) -- depth 3
+[4] is of length one. Base case. Return sorted list [4] -- depth 3
+
+merge([7], [4]) -- depth 3
+Is 7 or 4 smaller? 4. Add to end. [4]
+Right array is empty, concat left array. [4, 7]
+Return sorted array [4, 7]
+
+merge([1, 5], [4, 7]) -- depth 2
+Is 1 or 4 smaller? 1. Add to end. [1]
+Is 5 or 4 smaller? 4. Add to end. [1, 4]
+Is 5 or 7 smaller? 5. Add to end. [1, 4, 5]
+Left array is empty, concat right array. [1, 4, 5, 7]
+Return sorted array [1, 4, 5, 7]
+
+mergeSort([2, 3, 6]) -- depth 1
+
+mergeSort([2, 3]) // mergeSort([6]) -- depth 2
+
+mergeSort([2]) // mergeSort([3]) -- depth 3
+[2] is of length one. Base case. Return sorted list [2]
+
+mergeSort([3]) -- depth 3
+[3] is of length one. Base case. Return sorted list [3]
+
+merge([2], [3]) -- depth 3
+Is 2 or 4 smaller? 2. Add to end. [2]
+Left array is empty, concat right array. [2, 3]
+Return sorted array [2, 4]
+
+mergeSort([6]) -- depth 2
+[6] is of length one. Base case. Return sorted list [6]
+
+merge([2, 3], [6]) -- depth 2
+Is 2 or 6 smaller? 2. Add to end. [2]
+Is 3 or 6 smaller? 3. Add to end. [2, 3]
+Left array is empty, concat right array. [2, 3, 6]
+Return sorted array [2, 3, 6]
+
+merge([1, 4, 5, 7], [2, 3, 6]) -- depth 1
+Is 1 or 2 smaller? 1. Add to end. [1]
+Is 4 or 2 smaller? 2. Add to end. [1, 2]
+Is 4 or 3 smaller? 3. Add to end. [1, 2, 3]
+Is 4 or 6 smaller? 4. Add to end. [1, 2, 3, 4]
+Is 5 or 6 smaller? 5. Add to end. [1, 2, 3, 4, 5]
+Is 7 or 6 smaller? 6. Add to end. [1, 2, 3, 4, 5, 6]
+Right array is empty, concat left array. [1, 2, 3, 4, 5, 6, 7]
+Return sorted list [1, 2, 3, 4, 5, 6, 7]
+```
+
+![image](https://user-images.githubusercontent.com/87665319/157129537-f1f8b742-435c-4707-a558-ab7530a9fb31.png)
+
+
 ### Caveat
 
 You can do this by writing two separate functions: one that breaks down the array into smaller arrays (via recursion) and the other one that takes two sorted arrays and returns one sorted array.
 
 ### The Code
+
+```
+function mergeSort(arr) {
+  if (arr.length < 2) return arr;
+  
+  const halfLen = Math.floor(arr.length / 2);
+  
+  const arrA = arr.slice(0, halfLen);
+  const arrB = arr.slice(halfLen);
+  
+  return merge(mergeSort(arrA), mergeSort(arrB));
+  
+  function merge(arr1, arr2) {
+    const merged = [];
+    let i = 0;
+    let j = 0;
+    
+    while (i < arr1.length || j < arr2.length) {
+      if (arr1[i] < arr2[j] || arr2[j] === undefined) {
+        merged.push(arr1[i]);
+        i++;
+      } else {
+        merged.push(arr2[j]);
+        j++;
+      }
+    }
+    
+    return merged;
+  }
+}
+```
+
 ### Big O
+
 
 
 ## Topic

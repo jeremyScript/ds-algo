@@ -90,7 +90,7 @@ What about the spatial complexity? In our case, we're operating on the array its
 
 Is this sorting algorithm *stable*? To be considered a stable sort, the sort must guarantee that if two things are equal that that they stay in that same order. For example, if we have an array of users that looks like this: `[{state: "CO", name: "Sarah Drasner"}, {state: "CA", name: "Shirley Wu"}, {state: "CA", name: "Scott Moss"}]` and we're sorting by state, we'd have to guarantee that Shirley comes before Scott for the sort to be considered stable. Sometimes this is important to you, sometimes you don't care. So is bubble sort stable? Yes, it'll guarantee that equivalent items come back in the order they were in.
 
-## Insertion Sort
+## 2. Insertion Sort
 
 ### Overview
 
@@ -145,6 +145,24 @@ What's the average case of a randomly shuffled array? It'll still make a lot of 
 What about spatial complexity? O(1). We don't create any additional items for this sort.
 
 The sort is destructive since we work on the array itself and the sort can be stable as long as you program it so that they stay in order during the insertions.
+
+## 3. Merge Sort
+
+### Overview
+
+One of the most efficient sorting algorithm.
+
+### The Algorithm
+
+Break a given array into two smaller arrays. Break those arrays again into yet smaller arrays. Repeat until you have arrays with a single element. By definition, an array of one element is already sorted. Now, merge each pair of the arrays back together, sorting as we go. We'll take those two smaller sroted arrays and combine them back into one larger sorted array. And then, repeat with the bigger arrays until we've merged them all back into one sorted array.
+
+### Caveat
+
+You can do this by writing two separate functions: one that breaks down the array into smaller arrays (via recursion) and the other one that takes two sorted arrays and returns one sorted array.
+
+### The Code
+### Big O
+
 
 ## Topic
 ### Overview

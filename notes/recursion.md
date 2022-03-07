@@ -4,7 +4,7 @@
 
 If you find yourself defining your problem into smaller versions of the same repeating problem, it's probably a good indication that recursion could be useful there.
 
-Fibonnaci example:
+## Fibonnaci Example
 
 A fibonacci number is a number that is defined as the sum of the previous two previous fibonacci numbers starting with 1 and 1 as the first two numbers. So `fibonacci(3)` is equal to `fibonacci(2)` + `fibonacci(1)`. To generalize this, `fibonacci(n)` = `fibonacci(n - 1)` + `fibonacci(n - 2)`. This is a recursively defined problem.
 
@@ -35,5 +35,49 @@ function fibonacci(n) {
   }
   
   return sequence[n - 1];
+}
+```
+
+## Nested Addition Example
+
+Given an array in which each element is either a number, array of numbers or further nested arrays of numbers, write a function that would add up and return all the numbers within the array regardless of how nested they are.
+
+e.g., `[1, [2, 3], [4, [5], [6, 7, [8, 9, [10]]]]]`
+
+First attempt:
+
+```
+function nestedAddition(arr) {
+  let sum = 0;
+
+  function iterateAndBreakItDown(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      if (typeof arr[i] === 'number') {
+        sum += arr[i];
+      } else {
+        iterateAndBreakItDown(arr[i]); 
+      }
+    }
+  }
+  iterateAndBreakItDown(arr);
+  return sum;
+}
+```
+
+Refactored:
+
+```
+function nestedAddition(arr) {
+  let sum = 0;
+  
+  for (let i = 0; i < arr.length; i++) {
+    if (typeof arr[i] === 'number' {
+      sum += arr[i];
+    } else {
+      sum += nestedAddition(arr[i]);
+    }
+  }
+  
+  return sum;
 }
 ```

@@ -315,6 +315,12 @@ There are other tricks around the pivot that we can do to mitigate our worst cas
 
 ### The Code
 
+- base case: array of length 1 or 0
+- choose pivot
+- separate into left and right arrays
+- call quickSort on left and right arrays
+- return left.concat(pivot, right)
+
 ```
 function quickSort(arr) {
   if (arr.length < 2) return arr;

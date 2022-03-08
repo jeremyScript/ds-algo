@@ -281,6 +281,20 @@ So let's combine our two terms together. This sort's computational complexity is
 
 What about spatial complexity? Notice we're creating and throwing away a lot of array. This isn't free, and on a large list can be a problem. Merge sort is among the worst because we'll create an array for every item in the array (plus a few more which would just be a coefficent so Big O wouldn't care) so the spatial complexity is O(n).
 
+## 4. Quick Sort
+
+### Overview
+One of the most useful and efficient sorting algorithms. It's an algorithm that takes a divide-and-conquer, recursive approach.
+
+### The Algorithm
+Take the last element in the array and call it the pivot. Everything that's smaller than the pivot gets put into the left array and everything that's greater gets put in the right array. You then call the function on the left and right arrays independently recursively. After those sorted arrays come back, concatenate the left list, the pivot, and the right list (in that order). The base case is when you have a...
+
+### Caveat
+### The Code
+### Big O
+
+
+
 ## Topic
 ### Overview
 ### The Algorithm

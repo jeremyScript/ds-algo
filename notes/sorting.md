@@ -287,11 +287,63 @@ What about spatial complexity? Notice we're creating and throwing away a lot of 
 One of the most useful and efficient sorting algorithms. It's an algorithm that takes a divide-and-conquer, recursive approach.
 
 ### The Algorithm
-Take the last element in the array and call it the pivot. Everything that's smaller than the pivot gets put into the left array and everything that's greater gets put in the right array. You then call the function on the left and right arrays independently recursively. After those sorted arrays come back, concatenate the left list, the pivot, and the right list (in that order). The base case is when you have a...
+Take the last element in the array and call it the pivot. Everything that's smaller than the pivot gets put into the left array and everything that's greater gets put in the right array. You then call the function on the left and right arrays independently recursively. After those sorted arrays come back, concatenate the left array, the pivot, and the right array (in that order). The base case is when you have an array of length 1 or smaller, in which case, you'd simply return the given array.
+
+```
+[4,9,3,5] list
+-> 5 is made the pivot since it's the last in the array
+-> divide list into two lists, [4,3] and [9]
+-> call quicksort on those two lists
+
+[4, 3]
+-> 3 is pivot
+-> call quicksort on [] and [4]
+-> those both return as is as they are the base case of length 0 or 1
+-> concat [], 3, and [4]
+-> return [3,4]
+
+[9]
+-> returns as this it is a base case of length 1
+
+(back into the original function call)
+-> call concat on [3,4], 5, and [9]
+-> return [3,4,5,9]
+```
 
 ### Caveat
+There are other tricks around the pivot that we can do to mitigate our worst case scenarios. The most common is called quicksort3 where you take the first element, the middle element, and the last element and takes the middle value as the pivot, guaranteeing at least that your pivot isn't the smallest or biggest element. It does add a few more comparisons to your sort so it does add overhead but at the benefit basically removing the worst case scenario. Others will just choose a random pivot each time. Most of the variations revolve around pivots.
+
 ### The Code
+
+```
+function quickSort(arr) {
+  if (arr.length < 2) return arr;
+  
+  const arrA = [];
+  const arrB = [];
+  const pivot = arr[arr.length - 1];
+
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] < pivot) {
+      arrA.push(arr[i]);
+    } else {
+      arrB.push(arr[i]);
+    }
+  }
+
+  return [...quickSort(arrA), pivot, ...quickSort(arrB)];
+}
+```
+
 ### Big O
+
+What is the worst case for quick sort? A sorted list. The pivot would always be the largest number in the array, meaning the left array would always be full and the right array would always be empty. In order for us to get that log n magic instead of just n, we need to be able to skip some comparisons. If it's sorted, we will compare every number against every other so we'd end up with O(n²). Same would apply with a reverse-sorted list.
+
+What's the best case scenario? It's actually the same the average case scenario: a randomly sorted list. That way the pivots will tend to be more in the middle so we'll get a good mix in our left and right arrays which is where that log n magic comes in. In these cases, it'll be O(n log n) like merge sort.
+
+What about spatial complexity? In the way that I'm going to have you do it, it'll be O(n). We'll be creating new arrays for each recursive call. This makes quick sort more clear to understand and for now that's what we're optimizing for: the actual algorithmic thinking.
+
+It is possible to implement quick sort as a destructive sort that operates in-place and uses some other tricks like tail call optimization. In this case its spatial complexity will be O(log n) as will still make some memory allocations on the call stack, but far fewer than merge sort does. For this reason, the spatially-effecient version of quick sort will frequently be favored over merge sort due to its lesser memory footprint.
 
 
 

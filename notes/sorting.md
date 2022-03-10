@@ -351,7 +351,45 @@ What about spatial complexity? In the way that I'm going to have you do it, it'l
 
 It is possible to implement quick sort as a destructive sort that operates in-place and uses some other tricks like tail call optimization. In this case its spatial complexity will be O(log n) as will still make some memory allocations on the call stack, but far fewer than merge sort does. For this reason, the spatially-effecient version of quick sort will frequently be favored over merge sort due to its lesser memory footprint.
 
+## 5. Radix Sort
 
+### Overview
+
+Unlike the previous sort algorithms, radix sorting is not based on comparison (e.g., "Is X bigger than Y?"). The big O of the comparison-based algorihms cannot be any faster than nlog n, so in order to get beyond that, we have to change our criteria and method.
+
+### The Algorithm
+
+So how do we ask sort a whole list of numbers if we never ask "is X bigger than Y"? Well, we sort parts of the array. We're going to sort the ones place first, so all the numbers in the ones place are in order from 0 to 9 e.g. if we had the list of `[109, 224, 901, 58]` after the first was we would have `[901, 224, 58, 109]`. Then we would sort on the tens place, ending up with `[901, 109, 224, 58]`. Then we'd sort by the hundreds, getting `[58, 109, 224, 901]`. And now we're sorted! Magic! It's a bit mind-bending but it does work! And honestly it's that simple.
+
+### Caveat
+
+### The Code
+
+```
+// Helper functions
+
+function getLongestLength(arr) {
+  return arr.reduce((acc, curr) => {
+    return curr.toString().length > acc ? curr : acc;
+  }, 0);
+}
+
+function getDigit(number, place, length) {
+  const stringNum = numbe.toString();
+  const numLength = stringNum.length;
+  const adjust = length - numLength;
+  return Number(stringNum[place - adjust]) || 0;
+}
+
+function radixSort(arr) {
+  const longestLength = getLongestLength(arr);;
+  const buckets = Array(10).fill([]);
+  
+  
+}
+```
+
+### Big O
 
 ## Topic
 ### Overview

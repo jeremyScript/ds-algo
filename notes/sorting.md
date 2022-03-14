@@ -78,7 +78,7 @@ function bubbleSort(nums) {
 
 ### Big O
 
-Talk abou the worst, best, and average case:
+Talk about the worst, best, and average case:
 
 What is the absolute best case for this algorithm? A sorted list. It'd run through the list once, comparing each element to its neighbor once, not swap anything, and be done. In our list of five that would be four comparisons and no swaps. Best case here is O(n) since the best case is just one run through so it'd grow linearly.
 

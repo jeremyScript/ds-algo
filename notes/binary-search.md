@@ -44,3 +44,4 @@ function binarySearch(arr, target) {
 
 The worst case scenario is when the target is not found in which case it would be O(log n). Just think how many times you'd have to split the array in half until you can't anymore. n = 2<sup>x</sup>, log<sub>2</sub> n = x.
 
+The spatial complexity is O(1);

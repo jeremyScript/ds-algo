@@ -1,0 +1,9 @@
+# Binary Search
+
+## Overview
+
+Search is the act of looking for a particular element in an array. This ends up being quite similar to sorting in practice.
+
+There are largely two common ways of doing search: linear search and binary search. The former is the simplest and really only useful if the array is not alrady sorted in any particular way. You just go through the array starting with the 0th element and ask if it is the element you're looking for. Its time complexity is O(n).
+
+Binary search is a bit more interesting. It only works if the array is already sorted. Imagine how you go about finding a name in a phone book. A telephone book is a sorted list of names. You'll open the book more or less to the middle (or say you do, for argument's sake.) From there, if the name you're looking for is smaller/earlier in the alphabet, you'll go halfway to the smaller/earlier side of the book, and continue doing so until eventually you land on the name you're looking for.

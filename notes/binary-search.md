@@ -22,7 +22,7 @@ look in the middle of the smaller half, 10 === 12? no, larger, go right
 look in the middle of the larger half (which is now just one number), is 12 === 12? yes, found element
 ```
 
-### The Code
+## The Code
 
 ```
 function binarySearch(arr, target) {
@@ -39,3 +39,8 @@ function binarySearch(arr, target) {
   return false;
 }
 ```
+
+## Big O
+
+The worst case scenario is when the target is not found in which case it would be O(log n). Just think how many times you'd have to split the array in half until you can't anymore. x = 2<sup>n</sup>, log<sub>2</sub> x = n.
+

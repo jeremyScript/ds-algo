@@ -40,5 +40,38 @@ So when do you choose to work with an array? When you need to do a lot of lookup
   you work
 */
 
-
+class ArrayList {
+  constructor() {
+    this.length = 0;
+    this.data = {};
+  }
+  push(value) {
+    this.data[this.length] = value;
+    this.length++;
+  }
+  pop() {
+    const ans = this.data[this.length - 1];
+    delete this.data[this.length - 1];
+    this.length--;
+    return ans;
+  }
+  get(index) {
+    return this.data[index];
+  }
+  delete(index) {
+    const ans = this.data[index];
+    this._collapseTo(index);
+    return ans;
+  }
+  _collapseTo(index) {
+    for (let i = index; i < this.length; i++) {
+      this.data[i] = this.data[i + 1];
+    }
+    delete this.data[this.length - 1];
+    this.length--;
+  }
+  serialize() {
+    return this.data;
+  }
+}
 ```

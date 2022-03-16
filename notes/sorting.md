@@ -341,6 +341,43 @@ function quickSort(arr) {
 }
 ```
 
+Alternate (more efficient) solution:
+
+```
+function quickSort(arr) {
+  const len = arr.length;
+  if (len < 2) return arr;
+  
+  const e1 = arr[0];
+  const e2 = Math.floor(len / 2);
+  const e3 = arr[len - 1];
+
+  function getMiddleValue(a, b, c) {
+    return Math.min(
+      Math.max(a, b),
+      Math.max(b, c),
+      Math.max(a, c)
+    );
+  }
+  
+  const pivot = getMiddleValue(e1, e2, e3);
+  let isPivot = true;
+
+  const left = [];
+  const right = [];
+
+  for (let i = 0; i < len; i++) {
+    const curr = arr[i];
+    
+    if (curr < pivot) left.push(curr);
+    else if (curr >= pivot && !isPivot) right.push(curr);
+    else isPivot = false;
+  }
+
+  return [...quickSort(left), pivot, ...quickSort(right)];
+}
+```
+
 ### Big O
 
 What is the worst case for quick sort? A sorted list. The pivot would always be the largest number in the array, meaning the left array would always be full and the right array would always be empty. In order for us to get that log n magic instead of just n, we need to be able to skip some comparisons. If it's sorted, we will compare every number against every other so we'd end up with O(n²). Same would apply with a reverse-sorted list.

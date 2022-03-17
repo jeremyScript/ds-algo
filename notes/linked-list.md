@@ -10,7 +10,7 @@ Picture a linked list like a chain of paperclips linked together. It's quick to 
 
 Unlike an array, consecutive items in a linked list are not necessarily next to each other in memory. However, the advantage here is that adding or deleting things will be easy since we don't have to do shifting or collapsing as we do with ArrayList.
 
-### Not Cache-Friendly
+## NOTE: Not Cache-Friendly
 
 Most computers have caching systems that make reading from sequential addresses in memory faster than reading from scattered addresses.
 
@@ -18,9 +18,23 @@ Array items are always located right next to each other in computer memory, but 
 
 So iterating through a linked list is usually quite a bit slower than iterating through the items in an array, even though they're both theoretically O(n)O(n) time.
 
-The Big O for lookups will be O(n).
+## Complexities
 
-Where are LinkedLists useful? Any time you need to do lookups, insertions and deletions. The Big O for insertions and deletions will be O(1).
+### Worst Cases
+
+space    O(n)
+
+prepend	O(1)
+
+append	O(1)
+
+lookup	O(n)
+
+insert	O(n)
+
+delete	O(n)
+
+Where are LinkedLists useful? Any time you need to append, prepend, insert or delete.
 
 ```
 value: [a]   [b]   [c]   [d]
@@ -55,14 +69,14 @@ There are other variations of LinkedLists as well. One is a doubly LinkedList, w
 
 #### Worst Cases
 
-space    O(n)O(n)
+space    O(n)
 
-prepend	O(1)O(1)
+prepend	O(1)
 
-append	O(1)O(1)
+append	O(1)
 
-lookup	O(n)O(n)
+lookup	O(n)
 
-insert	O(n)O(n)
+insert	O(n)
 
-delete	O(n)O(n)
+delete	O(n)

@@ -53,10 +53,16 @@ There are other variations of LinkedLists as well. One is a doubly LinkedList, w
 
 ### Big O:
 
-#### Worst Case
-space	   O(n)O(n)
+#### Worst Cases
+
+space    O(n)O(n)
+
 prepend	O(1)O(1)
+
 append	O(1)O(1)
+
 lookup	O(n)O(n)
+
 insert	O(n)O(n)
+
 delete	O(n)O(n)

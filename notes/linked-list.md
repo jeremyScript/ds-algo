@@ -10,6 +10,14 @@ Picture a linked list like a chain of paperclips linked together. It's quick to 
 
 Unlike an array, consecutive items in a linked list are not necessarily next to each other in memory. However, the advantage here is that adding or deleting things will be easy since we don't have to do shifting or collapsing as we do with ArrayList.
 
+### Not Cache-Friendly
+
+Most computers have caching systems that make reading from sequential addresses in memory faster than reading from scattered addresses.
+
+Array items are always located right next to each other in computer memory, but linked list nodes can be scattered all over.
+
+So iterating through a linked list is usually quite a bit slower than iterating through the items in an array, even though they're both theoretically O(n)O(n) time.
+
 The Big O for lookups will be O(n).
 
 Where are LinkedLists useful? Any time you need to do lookups, insertions and deletions. The Big O for insertions and deletions will be O(1).
@@ -27,7 +35,7 @@ next:  [ ]-> [ ]-> [ ]-> [ ]-> null
 -> return the value of the deleted node
 ```
 
-There are other variations of LinkedLists as well. One is a doubly LinkedList, where you have a previous and next pointer on each node. This can be helpful if you want to be able to do lookups from the tail or from the head.
+There are other variations of LinkedLists as well. One is a doubly LinkedList, where you have a previous and next pointer on each node. This can be helpful if you want to be able to do lookups from the tail or from the head. In a singly linked list, if you just had a pointer to a node in the middle of a list, there would be no way to know what nodes came before it. Not a problem in a doubly linked list.
 
 ## Summary
 
@@ -42,3 +50,13 @@ There are other variations of LinkedLists as well. One is a doubly LinkedList, w
 
 ### Uses:
 - Stacks and queues only need fast operations on the ends, so linked lists are ideal.
+
+### Big O:
+
+#### Worst Case
+space	   O(n)O(n)
+prepend	O(1)O(1)
+append	O(1)O(1)
+lookup	O(n)O(n)
+insert	O(n)O(n)
+delete	O(n)O(n)

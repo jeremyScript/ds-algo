@@ -51,3 +51,124 @@ This is the whole algorithm for look ups. Go left or right depending if it's sma
 
 ## Add
 
+What if we want to add an element to the array? The good news is you just reuse the find method we defined above and when you find where the element should be, you just stick in a new item! Let's give it a shot.
+
+```
+Current Tree:
+      10
+    /   \
+  5      15
+ / \     /
+3   8   12
+
+-> .add is called with 7
+-> start at root (10)
+-> lesser than 10, go left to 5
+-> greater than 5, go right to 8
+-> lesser than 8, go left
+-> no element at left, create new node
+   and make it the left subtree of 8
+
+         10
+       /   \
+     5      15
+    / \     /
+   3   8   12
+      /
+     7
+```
+
+## Delete
+
+Pretty similar to an add but a few additional steps. Let's take the tree:
+
+```
+        10
+       /   \
+     5      15
+    / \    /  \
+   3   8  12  17
+      /
+     6
+      \
+       7
+```
+
+Let's say we want to delete 5. Obviously a node still has to exist there, and remember all nodes have values. So how do we delete 5 without fracturing all the assumptions of the BST? There are two ways: replace 5 with the smallest child in the right child's subtree or the greatest child in the left subtree. Let's do the former. What is the greatest child in the left subtree? Well, you just follow right children in the left subtree until you hit the last one. In this case, it's just 6, only one hop. But if 5.5 was there, you'd hop one more.
+
+Okay, so we found the least child in the right subtree. By definition, this node will not have a left child. Otherwise what you found wouldn't be the least one in this subtree. We're going to do two things: take its value and replace the value we're trying to delete (in this case 5) and then move 6's right child to node we're over writing's left child. Let's write that step-by-step.
+
+```
+-> .delete called on 5
+-> call .find on 5
+  -> start with root, 10. 5 is less, go left
+  -> found 5
+-> .findLeastRightChild with 5
+  -> go right on 5, land on 8
+  -> go left as far as we can. only one hop, 6
+-> replace the node that 5's value with 6
+   (the new 6 / old 5 node will be represented as 6')
+
+         10
+       /   \
+     6'     15
+    / \    /  \
+   3   8  12  17
+      /
+     6
+      \
+       7
+
+-> set 8 left child to be 6 right child
+
+         10
+       /   \
+     6'     15
+    / \    /  \
+   3   8  12  17
+      /
+     7
+```
+
+This is the most complicated scenario. Let's glance at the other two possibilities.
+
+```
+   10
+  /  \
+ 5   15
+
+-> delete 15
+-> it has no children (leaf node), set its parent right child to null
+
+   10
+  /
+ 5
+```
+
+In this case you just wipe out the whole node when the node to delete is a leaf node.
+
+Okay, one more case.
+
+```
+   10
+  /  \
+ 5   15
+    /
+   12
+  /  \
+ 11  14
+
+-> delete 15
+-> 15 has no right child but does have a left child
+-> set 10 right child to be 15 left child
+
+   10
+  /  \
+ 5   12
+    /  \
+   11  14
+```
+
+When one of the children is null, you can just move its entire child to be the new child.
+
+The Big O of this would be still be O(log n). Despite it being more steps we don't normally need to look at every item in the tree.

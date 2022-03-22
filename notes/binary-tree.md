@@ -198,3 +198,21 @@ We went through a lot of trouble to learn about trees. Why would you ever use on
 One really good example that very frequently uses some variety of tree is database indexes. Let's say you have a database of all your orders and customers frequently search for their order by order number. We don't want to comb the whole database to find the one order: that'll be slow and taxing on your database. We also don't want to store the whole database in a tree: sometimes we want multiple indexes and we want to optimize the database so we can write quickly to it which keeping it in a tree would hinder.
 
 So we'll store the whole database in one data structure and then we'll keep a separate tree that we can use an index. When a user searches for their order number, we do a fast find on our tree, it points to where the item is in our database and we get a fast look up on a big database. O(log n) on large datasets is very fast.
+
+## Exercise
+
+Name your class Tree. 
+
+I'd suggest making another class called Node. You don't have to; you can make them all plain JS objects
+
+Here you'll make a BST. Your Tree class will have keep track of a root which will be the first item added
+to your tree. From there, if the item is less than the value of that node, it will go into its left subtree
+and if greater it will go to the right subtree.
+
+In order for this to work and for the unit tests to pass you, you must implement a Tree `.toObject` function that returns your tree as a series of nested objects. Those nested objects must use the following names for their properties
+
+value - integer     - value being contained in the node
+left  - Node/object - the left node which itself may be another tree
+right - Node/object - the right node which itself may be another tree
+
+Extra credit: implement delete

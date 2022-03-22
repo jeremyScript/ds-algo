@@ -211,8 +211,10 @@ and if greater it will go to the right subtree.
 
 In order for this to work and for the unit tests to pass you, you must implement a Tree `.toObject` function that returns your tree as a series of nested objects. Those nested objects must use the following names for their properties
 
-value - integer     - value being contained in the node
-left  - Node/object - the left node which itself may be another tree
-right - Node/object - the right node which itself may be another tree
+`value` - integer     - value being contained in the node
+
+`left`  - Node/object - the left node which itself may be another tree
+
+`right` - Node/object - the right node which itself may be another tree
 
 Extra credit: implement delete

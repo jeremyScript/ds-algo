@@ -1,5 +1,5 @@
 # Binary Tree
-(Source: interviewcake.com, Brian Holt)
+(Source: interviewcake.com, Brian Holt, Wiki)
 
 A binary tree is a "tree" data structure where every node has two or fewer children. The children are usually called *left* and *right*.
 
@@ -172,3 +172,29 @@ Okay, one more case.
 When one of the children is null, you can just move its entire child to be the new child.
 
 The Big O of this would be still be O(log n). Despite it being more steps we don't normally need to look at every item in the tree.
+
+## Worst Case BSTs
+
+Let's look at the worst case BST: if you have a sorted list of numbers and just added them in order.
+
+```
+1
+ \
+  2
+   \
+    3
+     \
+      4
+       \
+        5
+```
+
+Unfortunately a BST has no way to deal with this. This is why you'll never use BSTs directly yourself. There are variations of BST that are built to deal with these. We're going to look at one of them, the AVL tree, in the next section.
+
+## Why Use a Tree
+
+We went through a lot of trouble to learn about trees. Why would you ever use one? It's because they're very searchable. You're doing a bunch of work up front to make them easy to search later.
+
+One really good example that very frequently uses some variety of tree is database indexes. Let's say you have a database of all your orders and customers frequently search for their order by order number. We don't want to comb the whole database to find the one order: that'll be slow and taxing on your database. We also don't want to store the whole database in a tree: sometimes we want multiple indexes and we want to optimize the database so we can write quickly to it which keeping it in a tree would hinder.
+
+So we'll store the whole database in one data structure and then we'll keep a separate tree that we can use an index. When a user searches for their order number, we do a fast find on our tree, it points to where the item is in our database and we get a fast look up on a big database. O(log n) on large datasets is very fast.

@@ -39,7 +39,7 @@ If the any of the above rules are violated, then your tree isn't a binary search
 
 Let's talk about about how to do a look up. Say you have the above tree and you want to find 4.
 
-````
+```
 -> .find is called with 4
 -> start with root 8, 4 is smaller so go left
 -> node 3, 4 is larger, go right

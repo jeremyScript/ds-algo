@@ -10,7 +10,7 @@ Picture a linked list like a chain of paperclips linked together. It's quick to 
 
 Unlike an array, consecutive items in a linked list are not necessarily next to each other in memory. However, the advantage here is that adding or deleting things will be easy since we don't have to do shifting or collapsing as we do with ArrayList.
 
-## NOTE: Not Cache-Friendly
+## Not Cache-Friendly
 
 Most computers have caching systems that make reading from sequential addresses in memory faster than reading from scattered addresses.
 
@@ -80,3 +80,160 @@ lookup	O(n)
 insert	O(n)
 
 delete	O(n)
+
+## Exercise
+
+```
+Name your class / constructor (something you can call new on) LinkedList
+
+length - integer  - How many elements in the list
+push   - function - accepts a value and adds to the end of the list
+pop    - function - removes the last value in the list and returns it
+get    - function - accepts an index and returns the value at that position
+delete - function - accepts an index, removes value from list, collapses, and returns removed value
+
+I would suggest making a second class, a Node class. However that's up to you how you implement it. A Node
+has two properties, value and next.
+
+class LinkedList {
+  constructor(value) {
+    this.head = this.createNode(value);
+    this.tail = this.head;
+    this.length = 1;
+  }
+
+  createNode(value) {
+    return {
+      value: value,
+      next: null
+    }
+  }
+
+  push(value) {
+    const newNode = this.createNode(value);
+    this.tail.next = newNode;
+    this.tail = newNode;
+    this.length++;
+  }
+
+  pop() {
+    return this.delete(this.length - 1);
+  }
+
+  get(index) {
+    if (this.length <= index || index < 0) return;
+    
+    let count = 0;
+    let currNode = this.head;
+    
+    while (count < index) {
+      currNode = currNode.next;
+      count++;
+    }
+
+    return currNode.value;
+  }
+
+  delete(index) {
+    if (index < 0 || index >= this.length) return;
+    
+    if (index === 0) {
+      const deletedValue = this.head.value;
+      this.head = null;
+      this.tail = this.head;
+      this.length = 0;
+      return deletedValue;
+    }
+    
+    let count = 0;
+    let currNode = this.head;
+
+    while (count < index - 1) {
+      currNode = currNode.next;
+      count++;
+    }
+    
+    const deletedValue = currNode.next.value;
+    currNode.next = currNode.next.next;
+    if (index === this.length - 1) this.tail = currNode;
+    this.length--;
+    
+    return deletedValue;
+  }
+}
+```
+
+Refactored
+
+```
+class LinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+
+  push(value) {
+    const newNode = new Node(value);
+    this.length++;
+
+    if (!this.head) {
+      this.head = newNode;
+    } else {
+      this.tail.next = newNode;
+    }
+
+    this.tail = newNode;
+
+    return this.length;
+  }
+
+  get(index) {
+    if (index < 0 || index >= this.length) return;
+    return this._find(index).value;
+  }
+
+  _find(index) {
+    let currentNode = this.head;
+
+    for (let i = 0; i < index; i++) {
+      currentNode = currentNode.next;
+    }
+
+    return currentNode;
+  }
+
+  delete(index) {
+    if (index < 0 || index >= this.length) return;
+    
+    if (index === 0) {
+      const deleted = this._find(index);
+      this.head = this.head.next || null;
+      this.tail = this.head;
+      this.length = this.length === 0 ? 0 : this.length - 1;
+      return deleted.value;
+    }
+    
+    const pre = this._find(index - 1);
+    const deleted = this._find(index);
+    const post = this._find(index + 1) || null;
+
+    pre.next = post;
+    this.length--;
+    this.tail = post === null ? pre : post;
+    
+    return deleted.value;
+  }
+
+  pop() {
+    return this.delete(this.length - 1);
+  }
+}
+
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+```

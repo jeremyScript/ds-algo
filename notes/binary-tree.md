@@ -3,6 +3,8 @@
 
 A binary tree is a "tree" data structure where every node has two or fewer children. The children are usually called *left* and *right*.
 
+A *leaf* node is a node that has no children.
+
 ```
 class BinaryTreeNode {
   constructor(value) {
@@ -15,7 +17,7 @@ class BinaryTreeNode {
 
 ![image](https://user-images.githubusercontent.com/87665319/159576863-54c5298d-efa9-4bd4-a7c6-8dec2d91008e.png)
 
-That particular example is special because every level of the tree is completely full. There are no "gaps." We call this kind of tree "perfect."
+That particular example is special because every level of the tree is completely full. There are no "gaps." We call this kind of tree "perfect". 
 
 Binary trees have a few interesting properties when they're perfect:
 
@@ -26,6 +28,18 @@ Property 2: the number of nodes on the last level is equal to the sum of the num
 There are many varieties of tree data structures. We'll be looking at two of them, binary search trees and AVL trees, but there are so many more. They're used everywhere due to their fast access patterns, even across enormous data sets.
 
 At its core, a tree is very similar to a LinkedList. You have nodes. Those nodes have values and pointers to other nodes. Unlike a LinkedList which only has one next pointer (or maybe a next and previous) trees can have many pointers. We're going to be looking at two types of trees today that have just two children nodes: binary search trees and AVL trees (which are a special type of binary search tree).
+
+## Binary Search Tree
+
+A binary search tree is a binary tree that satisfies a certain condition, namely,
+
+```
+all left descendants <= n < all right descendants, for every node n
+```
+
+***NOTE***
+
+The definitoin can vary slightly with respect to equality.
 
 The first one we'll be looking at is a binary search tree (from here-on-out I'll abbreviate binary search trees as BSTs.) The binary part means there are at most two children nodes per node and the search part means that it's particularly well suited for "search" scenarios e.g. you need to be able to rapidly access data in it, even if it means slower inserts and deletes.
 

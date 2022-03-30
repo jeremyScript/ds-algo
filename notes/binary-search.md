@@ -31,12 +31,26 @@ function binarySearch(arr, target) {
   
   do {
     let mid = Math.floor((j - i) / 2) + i);
-    if (arr[mid] === target) return true;
+    if (arr[mid] === target) return mid;
     if (arr[mid] < target) i = mid + 1;
     else j = mid;
   } (i < j);
   
-  return false;
+  return -1;
+}
+
+// Recursive
+
+function recBinarySearch(array, target) {
+  return (function recurse(l, r) {
+    let m = Math.floor((r + l) / 2);
+    
+    if (array[m] === target) return m;
+    else if (l >= r) return -1;
+  
+    if (array[m] > target) return recurse(l, m);
+    else return recurse(m + 1, r);
+  })(0, array.length);
 }
 ```
 

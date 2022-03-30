@@ -44,15 +44,13 @@ Memoized:
 function memoize(fn) {
   const cache = {};
   
-  function outputFn(n) {
+  return function (n) {
     if (cache[n]) {
       return cache[n];
     } else {
       return cache[n] = fn(n);
     }
   }
-  
-  return outputFn;
 }
 
 const memoizedFib = memoize(getFib);
@@ -115,3 +113,10 @@ function getNFactorial(n) {
   return n * getFactorial(n - 1);
 }
 ```
+
+## Recursion: General Steps
+
+1. Identify base case(s).
+2. Identify recursive case(s).
+3. Return where appropriate.
+4. Write procedures for each case that bring you closer to the base case(s).

@@ -13,7 +13,7 @@ You need only pay out your family in the least number of bills possible so you d
 ```
 // Recursive solution
 
-function leastNumberOfBills(payout) {
+function fewestBills(payout) {
   if (payout % 5 !== 0) return;
   
   const payment = {
@@ -35,5 +35,29 @@ function leastNumberOfBills(payout) {
       deductBy(amount);
     }
   }
+}
+
+// Non-recursive solution
+
+function fewestBills(bills, amount) {
+  const sorted = bills.sort((a, b) => b - a);
+  
+  let remaining = amount;
+  let i = 0;
+  
+  const payout = {};
+  
+  while (remaining > 0) {
+    if (sorted[i] <= remaining) {
+      remaining -= sorted[i];
+      payout[sorted[i]]
+        ?  payout[sorted[i]]++
+        : payout[sorted[i]] = 1;
+    } else {
+      i++;
+    }
+  }
+
+  return payout;
 }
 ```

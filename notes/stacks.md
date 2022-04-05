@@ -1,4 +1,7 @@
-# Stack
+# Stacks
+(Sources: interviewcake.com)
+
+![image](https://user-images.githubusercontent.com/87665319/161819666-231d3c99-e54d-4e9a-803d-411864feaca7.png)
 
 ## Data Structure
 

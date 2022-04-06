@@ -1,30 +1,41 @@
 class Stack {
   constructor() {
-    // Initialize an empty stack
     this.items = [];
+    this.top = 0;
   }
 
   // Push a new item onto the stack
   push(item) {
-    this.items.push(item);
+    this.items[this.top++] = item;
+    return this.top;
   }
 
   // Remove and return the last item
   pop() {
     // If the stack is empty, return null
-    // (It would also be reasonable to throw an exception)
-    if (!this.items.length) {
+    if (this.top === 0) {
       return null;
     }
+    this.top--;
     return this.items.pop();
   }
 
   // Returns the last item without removing it
   peek() {
-    if (!this.items.length) {
+    if (this.top === 0) {
       return null;
     }
-    return this.items[this.items.length - 1];
+
+    return this.items[this.top - 1];
+  }
+
+  isEmpty() {
+    return this.top === 0 ? true : false;
+  }
+
+  clear() {
+    this.items = [];
+    this.top = 0;
   }
 }
 

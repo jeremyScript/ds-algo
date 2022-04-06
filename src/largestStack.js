@@ -54,30 +54,31 @@ Your stacks will contain only integers.
 export class MaxStack {
   constructor() {
     this.stack = new Stack();
-    this.highestNumsStack = new Stack();
+    this.largestNums = new Stack();
   }
 
-  // Check to see if num is greater than or equal to highestNum,
-  // If it is, push it onto highestNumsStack.
+  // Check to see if num is greater than the current largest number,
+  // If it is, push it onto largestNums.
   push(num) {
-    const lastIndex = this.highestNumsStack.items.length - 1;
-    const highestNum = this.highestNumsStack.items[lastIndex] || num;
-    if (num >= highestNum) this.highestNumsStack.push(num);
-    this.stack.push(num);
+    if (this.stack.top === 0 || num > this.largestNums.peek()) {
+      this.largestNums.push(num);
+    }
+
+    return this.stack.push(num);
   }
 
-  // If the popped number is equal to highestNum,
-  // also pop from highestNumsStack.
+  // If the popped number is equal to the current largest number,
+  // pop from largestNums.
   pop() {
-    const lastIndex = this.highestNumsStack.items.length - 1;
-    const highestNum = this.highestNumsStack.items[lastIndex];
-    const poppedNum = this.stack.pop();
-    if (poppedNum === highestNum) this.highestNumsStack.pop();
-    return poppedNum === undefined ? null : poppedNum;
+    const popped = this.stack.pop();
+    if (popped === this.largestNums.peek()) {
+      this.largestNums.pop();
+    }
+    return popped;
   }
 
   // The last number is the highest number in the stack.
   getMax() {
-    return this.highestNumsStack.peek();
+    return this.largestNums.peek();
   }
 }

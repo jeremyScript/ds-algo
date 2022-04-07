@@ -1,6 +1,6 @@
 import { TwoStackQueue } from "../src/twoStackQueue";
 
-describe.skip("TwoStackQueue", function () {
+describe("TwoStackQueue", function () {
   let queue;
 
   beforeEach(() => {
@@ -8,7 +8,7 @@ describe.skip("TwoStackQueue", function () {
   });
 
   test("constructor", () => {
-    expect(queue).toEqual(expect.any(queue));
+    expect(queue).toEqual(expect.any(TwoStackQueue));
   });
 
   test("enqueue", () => {

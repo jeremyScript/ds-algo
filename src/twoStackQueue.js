@@ -9,6 +9,7 @@ Assume you already have a stack implementation.
 */
 
 // Solution
+// O(m) runtime per m calls
 
 export class TwoStackQueue {
   constructor() {
@@ -36,6 +37,7 @@ export class TwoStackQueue {
     return this.length === 0 ? null : this._prepOutStack().peek();
   }
 
+  // Move items from inStack to outStack, reversing order
   _prepOutStack() {
     if (this._outStack.top === 0) {
       while (this._inStack.top > 0) {

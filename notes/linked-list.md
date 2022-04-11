@@ -173,64 +173,76 @@ class LinkedList {
     this.length = 0;
   }
 
-  push(value) {
-    const newNode = new Node(value);
-    this.length++;
-
-    if (!this.head) {
+  add(index, value) {
+    if (index < 0 || index > this.length) return;
+    
+    const newNode = new LinkedListNode(value);
+    
+    if (this.head === null || index === 0) {
+      const copy = this.head;
       this.head = newNode;
-    } else {
+      this.head.next = copy;
+      this.tail = this.tail || newNode;
+      return ++this.length;
+    }
+
+    const currNode = this._getNode(index);
+    const prevNode = this._getNode(index - 1);
+
+    prevNode.next = newNode;
+    newNode.next = currNode;
+
+    if (index === this.length) {
       this.tail.next = newNode;
+      this.tail = newNode;
     }
 
-    this.tail = newNode;
-
-    return this.length;
-  }
-
-  get(index) {
-    if (index < 0 || index >= this.length) return;
-    return this._find(index).value;
-  }
-
-  _find(index) {
-    let currentNode = this.head;
-
-    for (let i = 0; i < index; i++) {
-      currentNode = currentNode.next;
-    }
-
-    return currentNode;
+    return ++this.length;
   }
 
   delete(index) {
-    if (index < 0 || index >= this.length) return;
+    const currNode = this._getNode(index);
     
     if (index === 0) {
-      const deleted = this._find(index);
-      this.head = this.head.next || null;
-      this.tail = this.head;
-      this.length = this.length === 0 ? 0 : this.length - 1;
-      return deleted.value;
+      this.head = currNode.next;
+      if (this.length === 1) {
+        this.tail = null;
+      }
+    } else { 
+      const prevNode = this._getNode(index - 1);
+      const nextNode = this._getNode(index + 1);
+      if (index === this.length - 1) {
+        this.tail = prevNode;
+      }
+      prevNode.next = nextNode;
     }
-    
-    const pre = this._find(index - 1);
-    const deleted = this._find(index);
-    const post = this._find(index + 1) || null;
-
-    pre.next = post;
     this.length--;
-    this.tail = post === null ? pre : post;
-    
-    return deleted.value;
+    return currNode.value;
+  }
+
+  push(value) {
+    return this.add(this.length, value);
   }
 
   pop() {
     return this.delete(this.length - 1);
   }
+
+  _getNode(index) {
+    if (index < 0 || index >= this.length) return null;
+    if (index === 0 ) return this.head;
+    
+    let node = this.head;
+
+    for (let i = 0; i < index; i++) {
+      node = node.next;
+    }
+    
+    return node;
+  }
 }
 
-class Node {
+class LinkedListNode {
   constructor(value) {
     this.value = value;
     this.next = null;
